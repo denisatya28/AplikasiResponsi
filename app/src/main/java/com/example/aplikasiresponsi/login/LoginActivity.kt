@@ -33,8 +33,8 @@ class LoginActivity : AppCompatActivity() {
             getmail.setText(bukabundle.getString("setmail"))
         }
             btnlog.setOnClickListener {
-                if (Patterns.EMAIL_ADDRESS.matcher(mail.text.toString()).matches()) {
-                    mail.error = "Masukan email dengan benar"
+                if (mail.length() == 0) {
+                    mail.error = "Email Tidak Boleh Kosong"
                 } else if (pass.length() == 0) {
                     pass.error = "Password Tidak Boleh Kosong"
                 } else if (mail.equals(getmail) && pass.equals(getpass)) {

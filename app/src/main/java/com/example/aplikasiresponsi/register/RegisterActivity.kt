@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.aplikasiresponsi.R
@@ -17,6 +18,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val btnkembali=findViewById<ImageButton>(R.id.btnkembalire)
         val btnreg = findViewById<Button>(R.id.btnregister)
         val setmail = findViewById<EditText>(R.id.etsetmail)
         val setpass = findViewById<EditText>(R.id.etsetpasword)
@@ -28,8 +30,8 @@ class RegisterActivity : AppCompatActivity() {
             bundle.putString("setcpass",setcpass.text.toString())
             bundle.putString("setmail",setmail.text.toString())
 
-            if(Patterns.EMAIL_ADDRESS.matcher(setmail.text.toString()).matches()) {
-                setmail.error = "Masukan email dengan benar"
+            if (setmail.length() == 0) {
+                setmail.error = "Email Tidak Boleh Kosong"
             }
             else if (setpass.length()==0) {
                 setpass.error = "Password Tidak Boleh Kosong"
@@ -55,6 +57,10 @@ class RegisterActivity : AppCompatActivity() {
             else{
                 Toast.makeText(this, "Password Harus Sama", Toast.LENGTH_SHORT).show()
             }
+        }
+        btnkembali.setOnClickListener{
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
     }
