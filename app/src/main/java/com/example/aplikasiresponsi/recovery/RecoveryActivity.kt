@@ -29,7 +29,7 @@ class RecoveryActivity : AppCompatActivity() {
         }
 
         btnkirim.setOnClickListener {
-            if (etMail.length() == 0) {
+            if (Patterns.EMAIL_ADDRESS.matcher(etMail.text.toString()).matches()) {
                 etMail.error = "Email Tidak Boleh Kosong"
             }
             else {
